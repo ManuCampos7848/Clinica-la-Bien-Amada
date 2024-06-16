@@ -19,8 +19,10 @@ Algunas características de este proyecto son:
 -	Las interfaces graficas se realizaron con la ayuda de la herramienta de desarrollo Bootstrap
 -	Se utilizaron Guards como middleware que se ejecutan antes de cargar una ruta específica en la aplicación. La principal función es determinar si el usuario tiene permisos suficientes para acceder a esa ruta en particular 
 -	Se utilizaron Interceptors principalmente para inspeccionar y modificar las peticiones HTTP que la aplicación envía al servidor, así como las respuestas que recibe; permite realizar diversas operaciones como modificar encabezados HTTP, manipular el cuerpo de la solicitud, establecer tokens de autenticación o autorización, y manejar errores.
+- Para la parte del backend se uso Servlet Filter la cual su función es interceptar y procesar solicitudes y respuestas HTTP antes de que lleguen a un servlet o después de que se generen. Por ejemplo: Restringir métodos según el rol del usuario, como permitir solo a pacientes crear citas y solo a administradores cerrar PQRS.
+-	Se usaron tokens garantiza la validez y seguridad de los datos con la ayuda de JSON Web Tokens (JWT). 
 
-Dentro de la carpeta “Front-la-Bien-Amada” hay otra carpeta de nombre “Imagenes de su Funcionamiento” en donde se encuentran algunas imágenes del proyecto en ejecución mostrando algunas funcionalidades tanto del paciente como del medico.
+Dentro la carpeta “Imagenes de su Funcionamiento” se encuentran algunas imágenes del proyecto en ejecución mostrando algunas funcionalidades tanto del paciente como del médico.
 
 ___________________________ English _____________________
 
@@ -47,5 +49,7 @@ Some features of this project are:
 - The graphical interfaces were made with the help of the Bootstrap development tool
 - Guards were used as middleware that are executed before loading a specific route in the application. The main function is to determine if the user has sufficient permissions to access that particular route
 - Interceptors were mainly used to inspect and modify the HTTP requests that the application sends to the server, as well as the responses it receives; allows you to perform various operations such as modifying HTTP headers, manipulating the request body, setting authentication or authorization tokens, and handling errors.
+- For the backend part, Servlet Filter was used, whose function is to intercept and process HTTP requests and responses before they reach a servlet or after they are generated. For example: Restrict methods based on the user's role, such as allowing only patients to create appointments and only allowing administrators to close PQRS.
+- Tokens were used to ensure the validity and security of the data with the help of JSON Web Tokens (JWT).
 
-Within the “Front-la-Bien-Amada” folder there is another folder named “Images of its Functioning” where there are some images of the project in progress showing some functionalities of both the patient and the doctor.
+Within the “Images of its Operation” folder there are some images of the project in progress showing some functionalities of both the patient and the doctor.
