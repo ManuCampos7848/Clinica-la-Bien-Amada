@@ -13,6 +13,7 @@ Esta es la parte del Front-End del proyecto principal el cual tiene algunas func
 -	Ver los detalles de una atención (una cita realizada) – Medico
 -	Agendar días libres
 -	Etc.
+
 Algunas características de este proyecto son:
 -	Se realizó con el framework Angular conocido para creación de aplicaciones web de una sola página (SPA, por sus siglas en inglés)
 -	Las interfaces graficas se realizaron con la ayuda de la herramienta de desarrollo Bootstrap
