@@ -1,0 +1,117 @@
+<!--
+Este bloque de código consiste en dos tarjetas (cards) relacionadas con la gestión de una PQRS (Petición, Queja, Reclamo y Sugerencia).
+
+Tarjeta 1 - Detalles de la PQRS:
+- Encabezado de la tarjeta:
+  - Se muestra un título "Detalles de la PQRS" con un ícono específico para esta sección.
+- Cuerpo de la tarjeta:
+  - Contiene dos secciones (caja1 y caja2) dentro del contenedor principal.
+  - En 'caja1':
+    - Se muestra el nombre del paciente utilizando la interpolación de Angular.
+    - Se muestra el nombre del médico utilizando la interpolación de Angular.
+    - Se muestra la especialidad del médico utilizando la interpolación de Angular.
+    - Se muestra el estado actual de la PQRS utilizando la interpolación de Angular.
+  - En 'caja2':
+    - Se muestra el motivo de la PQRS utilizando la interpolación de Angular.
+    - Se muestra la fecha de creación de la PQRS utilizando la interpolación de Angular.
+
+Tarjeta 2 - Mensajes de la PQRS:
+- Encabezado de la tarjeta:
+  - Se muestra un título "Mensajes de la PQRS" con un ícono específico para esta sección.
+- Cuerpo de la tarjeta:
+  - Contiene dos secciones:
+    - 'caja3' que muestra un campo de texto grande para visualizar los mensajes de la PQRS.
+    - Un formulario para escribir un nuevo mensaje de respuesta:
+      - Un campo de entrada para el mensaje nuevo, con validación de entrada.
+      - Botón "Enviar Mensaje" que al hacer clic ejecuta el método 'enviarMensaje()' para procesar el mensaje.
+
+Ambas tarjetas están diseñadas para mostrar detalles y mensajes relacionados con una PQRS específica, permitiendo al usuario ver información detallada y responder a través del formulario de mensaje.
+
+-->
+
+<div class="card">
+
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Detalles de la PQRS</h5>
+    </div>
+
+    <div class="card-body p-5">
+
+        <div id="contenedor">
+
+            <div id="caja1">
+
+                <h4>Nombre del Paciente:</h4>
+                <p>{{pqrs?.nombrePaciente}}</p>
+
+                <h4>Nombre del Medico</h4>
+                <p>{{pqrs?.nombreMedico}}</p>
+
+                <h4>Especialidad del Medico</h4>
+                <p>{{pqrs?.especialidad}}</p>
+
+                <h4>Estado de la PQRS</h4>
+                <p id="estadoPQRS">{{pqrs?.estado}}</p>
+
+                <h4>Especialidad del Medico</h4>
+                <p>{{pqrs?.especialidad}}</p>
+
+            </div>
+
+            <div id="caja2">
+
+                <h4>Motivo de la PQRS</h4>
+                <p>{{pqrs?.motivoPQRS}}</p>
+
+                <h4>Fecha de Creacion de la PQRS</h4>
+                <p>{{pqrs?.fecha}}</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Mensajes de la PQRS</h5>
+    </div>
+
+    <div class="card-body p-5">
+
+
+        <div id="caja3">
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Mensajes PQRS: </label>
+                <div class="col-sm-10">
+                    <textarea type="text" name="motivo" required class="form-control"
+                        [(ngModel)]="mensajesPQRS"></textarea>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Escribir Mensaje Nuevo: </label>
+            <div class="col-sm-10">
+                <input #cedula="ngModel"
+                    [ngClass]="cedula.invalid && (cedula.dirty || cedula.touched) ? 'is-invalid' : ''" type="text"
+                    name="cedula" class="form-control" required [(ngModel)]="registroRespuestaDTO.mensaje" />
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit" (click)="enviarMensaje()">
+            <i class="fa-solid fa-circle-plus me-1"></i>Enviar Mensaje
+        </button>
+
+
+    </div>
+
+</div>

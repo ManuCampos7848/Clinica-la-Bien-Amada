@@ -1,0 +1,48 @@
+<!--
+Este bloque de código representa una tarjeta (card) que muestra la gestión de días libres de médicos. La tarjeta contiene un encabezado con un ícono y un título específico para esta gestión.
+
+Dentro del cuerpo de la tarjeta:
+- Hay un botón que permite agendar un nuevo día libre para un médico, enlazado a la ruta '/agendar-dia-libre'.
+- Luego de este botón, hay una separación visual utilizando una línea horizontal (<hr>).
+- Debajo de la línea horizontal, se muestra un título "Día Libre" utilizando texto en negrita.
+- A continuación, se presenta una tabla que lista los días libres programados para los médicos. Cada fila (tr) en la tabla corresponde a un día libre (item) obtenido del arreglo 'diasLibres'.
+- Las columnas muestran el código del médico y el día libre específico.
+- No hay acciones adicionales como enlaces o botones dentro de esta tabla.
+- Finalmente, hay otra línea horizontal (<hr>) que separa este contenido del resto de la tarjeta.
+-->
+
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Gestión de Dias Libres Medico</h5>
+    </div>
+    <div class="card-body p-5">
+        <div class="mb-3">
+            <button type="button" routerLink="/agendar-dia-libre" class="btn btn-success me-2"><i
+                    class="fa-solid fa-plus me-1"></i>Agendar Dia Libre</button>
+        </div>
+        <hr>
+        <p><STrong>Dia Libre</STrong></p>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Código Medico</th>
+                    <th>Dia Libre</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let item of diasLibres">
+                    <td>
+                        <p>{{item.codigoMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.dia}}</p>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+    </div>
+</div>

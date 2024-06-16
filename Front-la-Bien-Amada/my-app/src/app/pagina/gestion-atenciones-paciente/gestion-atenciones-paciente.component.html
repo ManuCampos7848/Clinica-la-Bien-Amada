@@ -1,0 +1,194 @@
+<!--
+Este bloque de código representa una tarjeta (card) que muestra la gestión de citas de un médico. La tarjeta contiene un encabezado con un ícono y un título específico para esta gestión.
+
+Dentro del cuerpo de la tarjeta:
+
+- Sección de "Citas Pendientes":
+  - Se muestra un título "Citas Pendientes" utilizando texto en negrita.
+  - Hay una tabla que lista las citas pendientes para el médico, obtenidas del arreglo 'citasPendientes'.
+  - Las columnas de la tabla incluyen el código de la cita, la cédula y nombre del paciente, nombre del médico, hora de la cita, estado de la cita y fecha.
+  - El estado de la cita utiliza una clase condicional ([ngClass]) para aplicar estilos diferentes según si la cita está 'PROGRAMADA' (verde) o no (rojo).
+  - Cada fila tiene un enlace para ver detalles de la cita enlazado a '/detalle-cita-medico/{{item.codigoCita}}'.
+
+- Sección de "Citas Realizadas":
+  - Se muestra un título "Citas Realizadas" utilizando texto en negrita.
+  - Hay otra tabla que lista las citas ya completadas para el médico, obtenidas del arreglo 'citasRealizadas'.
+  - Las columnas de la tabla son similares a las de "Citas Pendientes" pero mostrando citas completadas.
+  - El estado de la cita nuevamente utiliza una clase condicional para aplicar estilos verdes si la cita está 'COMPLETADA'.
+  - Cada fila también tiene un enlace para ver detalles de la cita enlazado a '/detalle-cita-medico/{{item.codigoCita}}'.
+
+- Sección de "Citas Canceladas":
+  - Se muestra un título "Citas Canceladas" utilizando texto en negrita.
+  - Hay una tercera tabla que lista las citas canceladas para el médico, obtenidas del arreglo 'citasCanceladas'.
+  - Las columnas son similares a las anteriores, mostrando detalles de las citas canceladas.
+  - El estado de la cita utiliza una clase condicional para aplicar estilos verdes si la cita está 'CANCELADAS'.
+  - Cada fila tiene un enlace para ver detalles de la cita enlazado a '/detalle-cita-medico/{{item.codigoCita}}'.
+
+- Entre cada sección de tabla, hay líneas horizontales (<hr>) que separan visualmente cada sección de citas.
+-->
+
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Gestión de Atenciones del Paciente</h5>
+    </div>
+
+    <div class="card-body p-5">
+
+        <label class="col-sm-2 col-form-label">Elija Una Cita Atendida: </label>
+
+        <div class="mb-3 row">
+
+            <div class="col-sm-10">
+                
+                <table class="table table-striped table-hover" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Código Cita</th>
+                            <th>Nombre Paciente</th>
+                            <th>Nombre Medico</th>
+                            <th>Codigo Medico</th>
+                          
+                        </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let item of atenciones">
+                            <td>
+                                <p>{{item.codigoCita}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.nombrePaciente}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.nombreMedico}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.codigoMedico}}</p>
+                            </td>
+
+                        
+                            <td><a routerLink="/detalle-atencion-paciente/{{item.codigoCita}}"><i class="fa-solid
+        
+                                    fa-circle-info me-2"></i>Ver detalle</a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Atenciones Filtradas Por Fecha</h5>
+    </div>
+    <div class="card-body p-5">
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ingrese Una Fecha Para Buscar: </label>
+            <div class="col-sm-10">
+                <input type="date" name="fechaCita" [(ngModel)]="filtroAtencion.fechaAtencion" (change)="citasFecha($event)"
+                    class="form-control" />
+            </div>
+        </div>
+        
+        <br>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Código Cita</th>
+                    <th>Codigo del Medico</th>
+                    <th>Nombre Medico</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let item of citasPorFecha">
+                    <td>
+                        <p>{{item.codigoCita}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.codigoMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.nombreMedico}}</p>
+                    </td>
+                    <td><a routerLink="/detalle-atencion-paciente/{{item.codigoCita}}"><i
+                        class="fa-solid fa-circle-info me-2"></i>Ver detalle</a></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+        <app-alerta [alerta]="alerta"></app-alerta>
+
+        <hr>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Atenciones Filtradas Por Codigo del Medico</h5>
+    </div>
+    <div class="card-body p-5">
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ingrese el Codigo del Medico: </label>
+            <div class="col-sm-10">
+                <input #codigoMedico="ngModel"
+                    [ngClass]="codigoMedico.invalid && (codigoMedico.dirty || codigoMedico.touched) ? 'is-invalid' : ''"
+                    type="text" name="alergias" class="form-control" required
+                    [(ngModel)]="filtroBusquedaDTO.codigoMedico" />
+            </div>
+        </div>
+
+
+        <br>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Código Cita</th>
+                    <th>Codigo del Medico</th>
+                    <th>Nombre Medico</th>                 
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let item of citasPorCodigoMedico">
+                    <td>
+                        <p>{{item.codigoCita}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.codigoMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.nombreMedico}}</p>
+                    </td>
+                    <td><a routerLink="/detalle-atencion-paciente/{{item.codigoCita}}"><i
+                                class="fa-solid fa-circle-info me-2"></i>Ver detalle</a></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <button class="btn btn-primary" type="submit" (click)="filtrarCitasPorMedico()">
+            <i class="fa-solid fa-circle-plus me-1"></i>Buscar Cita
+        </button>
+
+        <app-alerta [alerta]="alerta"></app-alerta>
+
+        <hr>
+    </div>
+</div>

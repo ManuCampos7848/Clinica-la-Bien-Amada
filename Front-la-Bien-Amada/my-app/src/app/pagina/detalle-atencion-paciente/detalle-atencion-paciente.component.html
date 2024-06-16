@@ -1,0 +1,80 @@
+<!--
+This HTML structure represents a card displaying details of a medical appointment within a management system.
+
+Structure Breakdown:
+- Document Type Declaration: HTML5 doctype declaration.
+- HTML Tag and Language Attribute: Specifies the document is written in English.
+
+Inside the <body>:
+- Card Container:
+  - Header Section:
+    - Displays a title "Detalles de la Cita" with an accompanying icon.
+  - Body Section:
+    - Main Container ('contenedor'):
+      - 'caja1' and 'caja2' Divisions:
+        - 'caja1':
+          - Displays details such as appointment code, patient name, doctor's name, doctor's code, and medical specialty using Angular interpolation.
+        - 'caja2':
+          - Displays details like appointment date, treatment, diagnosis, and medical notes using Angular interpolation.
+
+This structure organizes and presents detailed information about a medical appointment effectively, ensuring clarity and ease of understanding for users interacting with the system.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="card">
+
+  <div class="card-header ps-5 pt-4 pb-4">
+      <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Detalles de la Atención</h5>
+  </div>
+
+  <div class="card-body p-5">
+
+      <div id="contenedor">
+
+          <div id="caja1">
+
+              <h4>Codigo de la Cita</h4>
+              <p id="">{{detalleAtencion?.codigoCita}}</p>
+
+              <h4>Nombre del Paciente:</h4>
+              <p>{{detalleAtencion?.nombrePaciente}}</p>
+
+              <h4>Nombre del Medico</h4>
+              <p>{{detalleAtencion?.nombreMedico}}</p>
+
+              <h4>Codigo del Medico</h4>
+              <p>{{detalleAtencion?.codigoMedico}}</p>
+
+              <h4>Especialidad del Medico</h4>
+              <p>{{detalleAtencion?.especialidad}}</p>
+
+          </div>
+
+          <div id="caja2">
+
+              <h4>Fecha de la Atencion</h4>
+              <p>{{detalleAtencion?.fechaAtencion}}</p>
+
+              <h4>Tratamiento</h4>
+              <p>{{detalleAtencion?.tratamiento}}</p>
+
+              <h4>Diagnostico</h4>
+              <p>{{detalleAtencion?.diagnostico}}</p>
+
+              <h4>Notas Medicas</h4>
+              <p>{{detalleAtencion?.notasMedicas}}</p>
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+</html>

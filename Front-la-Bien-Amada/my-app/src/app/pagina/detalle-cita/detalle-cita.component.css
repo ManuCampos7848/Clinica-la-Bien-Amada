@@ -1,0 +1,66 @@
+.card {
+    margin: 0 auto;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 16px;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+#contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#caja1, #caja2 {
+    flex: 1;
+    min-width: 250px;
+    margin: 8px;
+}
+
+p {
+    font-size: 17px;
+}
+
+#estadoPQRS {
+    color: aliceblue;
+    background-color: rgb(44, 139, 4);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80px;
+}
+
+@media (max-width: 768px) {
+    #contenedor {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    #caja1, #caja2 {
+        margin: 0 0 16px 0;
+    }
+
+    .card-body {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    h4 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+}

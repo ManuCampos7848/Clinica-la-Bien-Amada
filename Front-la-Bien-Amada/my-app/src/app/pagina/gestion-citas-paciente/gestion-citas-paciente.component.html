@@ -1,0 +1,205 @@
+<!--
+ * Este fragmento de HTML representa una página de gestión de citas para pacientes.
+ * 
+ * Secciones:
+ * 1. Gestión de Citas del Paciente:
+ *    - Permite registrar nuevas citas y muestra una tabla con todas las citas registradas,
+ *      incluyendo detalles como código de la cita, cédula del paciente, nombre del paciente,
+ *      nombre del médico, especialidad, estado de la cita y fecha.
+ *    - Proporciona enlaces para ver detalles específicos de cada cita.
+ * 
+ * 2. Citas Filtradas Por Fecha:
+ *    - Permite al usuario ingresar una fecha para buscar citas programadas en esa fecha.
+ *    - Muestra una tabla con citas filtradas por la fecha seleccionada, incluyendo detalles
+ *      como código de la cita, código del médico, nombre del médico, motivo de la cita y fecha.
+ *    - Proporciona un enlace para ver detalles específicos de cada cita.
+ * 
+ * 3. Citas Filtradas Por Código del Médico:
+ *    - Permite al usuario ingresar el código de un médico para buscar citas asociadas a ese médico.
+ *    - Muestra una tabla con citas filtradas por el código del médico ingresado, incluyendo detalles
+ *      como código de la cita, código del médico, nombre del médico, motivo de la cita y fecha.
+ *    - Proporciona un enlace para ver detalles específicos de cada cita.
+ * 
+ * El HTML utiliza clases de Bootstrap y FontAwesome para estilos y elementos visuales.
+-->
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header ps-5 pt-4 pb-4">
+            <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Gestión de Citas del Paciente</h5>
+        </div>
+        <div class="card-body p-5">
+            <div class="mb-3">
+                <button type="button" routerLink="/agendar-cita" class="btn btn-success me-2">
+                    <i class="fa-solid fa-plus me-1"></i>Registrar Cita
+                </button>
+            </div>
+            <br>
+            <p><strong>Citas</strong></p>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código Cita</th>
+                            <th>Cedula Paciente</th>
+                            <th>Nombre Paciente</th>
+                            <th>Nombre Medico</th>
+                            <th>Especialidad</th>
+                            <th>Estado de la Cita</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let item of citas">
+                            <td><p>{{item.codigoCita}}</p></td>
+                            <td><p>{{item.cedulaPaciente}}</p></td>
+                            <td><p>{{item.nombrePaciente}}</p></td>
+                            <td><p>{{item.nombreMedico}}</p></td>
+                            <td><p>{{item.especialidad}}</p></td>
+                            <td>
+                                <span [ngClass]="item.estadoCita == 'PROGRAMADA' ? 'text-bg-success' : 'text-bg-danger'" class="badge">
+                                    {{item.estadoCita}}
+                                </span>
+                            </td>
+                            <td><p>{{item.fecha}}</p></td>
+                            <td>
+                                <a routerLink="/detalle-cita/{{item.codigoCita}}">
+                                    <i class="fa-solid fa-circle-info me-2"></i>Ver detalle
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Citas Filtradas Por Fecha</h5>
+    </div>
+    <div class="card-body p-5">
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ingrese Una Fecha Para Buscar: </label>
+            <div class="col-sm-10">
+                <input type="date" name="fechaCita" [(ngModel)]="filtroBusquedaDTO.fecha" (change)="citasFecha($event)"
+                    class="form-control" />
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Código Cita</th>
+                    <th>Codigo del Medico</th>
+                    <th>Nombre Medico</th>
+                    <th>Motivo</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let item of citasPorFecha">
+                    <td>
+                        <p>{{item.codigoCita}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.codigoMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.nombreMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.motivo}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.fecha}}</p>
+                    </td>
+
+                    <td><a routerLink="/detalle-cita/{{item.codigoCita}}"><i
+                        class="fa-solid fa-circle-info me-2"></i>Ver detalle</a></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+        <app-alerta [alerta]="alerta"></app-alerta>
+
+        <hr>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Citas Filtradas Por Codigo del Medico</h5>
+    </div>
+    <div class="card-body p-5">
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ingrese el Codigo del Medico: </label>
+            <div class="col-sm-10">
+                <input #codigoMedico="ngModel"
+                    [ngClass]="codigoMedico.invalid && (codigoMedico.dirty || codigoMedico.touched) ? 'is-invalid' : ''"
+                    type="text" name="alergias" class="form-control" required
+                    [(ngModel)]="filtroBusquedaDTO.codigoMedico" />
+            </div>
+        </div>
+
+
+        <br>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Código Cita</th>
+                    <th>Codigo del Medico</th>
+                    <th>Nombre Medico</th>
+                    <th>Motivo</th>
+                    <th>Fecha</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let item of citasPorCodigoMedico">
+                    <td>
+                        <p>{{item.codigoCita}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.codigoMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.nombreMedico}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.motivo}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.fecha}}</p>
+                    </td>
+
+                    <td><a routerLink="/detalle-cita/{{item.codigoCita}}"><i
+                                class="fa-solid fa-circle-info me-2"></i>Ver detalle</a></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <button class="btn btn-primary" type="submit" (click)="filtrarCitasPorMedico()">
+            <i class="fa-solid fa-circle-plus me-1"></i>Buscar Cita
+        </button>
+
+        <app-alerta [alerta]="alerta"></app-alerta>
+
+        <hr>
+    </div>
+</div>
