@@ -20,6 +20,8 @@ Algunas características de este proyecto son:
 -	Se utilizaron Guards como middleware que se ejecutan antes de cargar una ruta específica en la aplicación. La principal función es determinar si el usuario tiene permisos suficientes para acceder a esa ruta en particular 
 -	Se utilizaron Interceptors principalmente para inspeccionar y modificar las peticiones HTTP que la aplicación envía al servidor, así como las respuestas que recibe; permite realizar diversas operaciones como modificar encabezados HTTP, manipular el cuerpo de la solicitud, establecer tokens de autenticación o autorización, y manejar errores.
 
+Dentro de la carpeta “Front-la-Bien-Amada” hay otra carpeta de nombre “Imagenes de su Funcionamiento” en donde se encuentran algunas imágenes del proyecto en ejecución mostrando algunas funcionalidades tanto del paciente como del medico.
+
 ___________________________ English _____________________
 
 This is the Front-End part of the main project which has some main functionalities of the clinics and hospitals such as:
@@ -45,3 +47,5 @@ Some features of this project are:
 - The graphical interfaces were made with the help of the Bootstrap development tool
 - Guards were used as middleware that are executed before loading a specific route in the application. The main function is to determine if the user has sufficient permissions to access that particular route
 - Interceptors were mainly used to inspect and modify the HTTP requests that the application sends to the server, as well as the responses it receives; allows you to perform various operations such as modifying HTTP headers, manipulating the request body, setting authentication or authorization tokens, and handling errors.
+
+Within the “Front-la-Bien-Amada” folder there is another folder named “Images of its Functioning” where there are some images of the project in progress showing some functionalities of both the patient and the doctor.
