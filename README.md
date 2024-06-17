@@ -1,4 +1,4 @@
-Esta es la parte del Front-End del proyecto principal el cual tiene algunas funcionalidades principales de las clínicas y hospitales tales como:
+Este proyecto cuenta con algunas funcionalidades principales de las clínicas y hospitales tales como:
 -	Crear una cuenta.
 -	Agendar citas
 -	Ver los detalles de una cita agendada - Paciente
