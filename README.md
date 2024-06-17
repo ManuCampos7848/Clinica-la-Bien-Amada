@@ -26,7 +26,7 @@ Dentro la carpeta “Imagenes de su Funcionamiento” se encuentran algunas imá
 
 ___________________________ English _____________________
 
-This is the Front-End part of the main project which has some main functionalities of the clinics and hospitals such as:
+This project has some main functionalities of the clinics and hospitals such as:
 
 -	Create an account.
 -	Schedule appointments
